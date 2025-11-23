@@ -1,0 +1,29 @@
+class MutualExclusion {
+    public static void main(String[] args) {
+
+        Object lock = new Object();  // used to lock critical section
+
+        Thread t1 = new Thread(() -> {
+            synchronized(lock) {
+                System.out.println("Thread 1 in critical section");
+            }
+        });
+
+        Thread t2 = new Thread(() -> {
+            synchronized(lock) {
+                System.out.println("Thread 2 in critical section");
+            }
+        });
+
+        t1.start();
+        t2.start();
+    }
+}
+
+
+
+
+
+Output
+Thread 1 in critical section
+Thread 2 in critical section
